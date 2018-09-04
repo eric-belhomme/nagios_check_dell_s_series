@@ -177,12 +177,11 @@ def getTemperatures(warn, crit):
 	vals = snmpSession.walk(vars)
 	if vals:
 		for temp in vals:
-			inttemp = int(temp)
 			print( 'temp: ' + str(inttemp) + ' warn: ' + str(warn) + ' crit: ' + str(crit) + ' ret: ' + str(retCode))
-			if inttemp > crit and retCode < 2:
+			if int(temp) > int(crit) and retCode < 2:
 				retCode = 2
 				message.append('temperature sensor at ' + temp + ' °C exceed critical threshold (' + str(crit) + '°C)')
-			elif inttemp > warn and retCode < 1:
+			elif int(temp) > int(warn) and retCode < 1:
 				retCode = 1
 				message.append('temperature sensor at ' + temp + ' °C exceed warning threshold (' + str(warn) + '°C)')
 			else:
