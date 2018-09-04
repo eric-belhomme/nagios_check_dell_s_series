@@ -13,11 +13,9 @@
 """
 from __future__ import print_function
 
-import commands
 import sys
 import optparse
 import re
-import os
 import netsnmp
 
 __author__ = 'Eric Belhomme'
