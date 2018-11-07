@@ -170,9 +170,13 @@ def getTemperatures(warn, crit):
 	retCode = 0
 	message = []
 	vars = netsnmp.VarList(
-		netsnmp.Varbind('.1.3.6.1.4.1.674.11000.5000.100.4.1.1.3.1.11'), # chassis temp.
-		netsnmp.Varbind('.1.3.6.1.4.1.674.11000.5000.100.4.1.1.4.1.5'))  # card temp.
-	vals = snmpSession.walk(vars)
+	#	netsnmp.Varbind('.1.3.6.1.4.1.674.11000.5000.100.4.1.1.3.1.11'), # chassis temp.
+	#	netsnmp.Varbind('.1.3.6.1.4.1.674.11000.5000.100.4.1.1.4.1.5')  # card temp.
+		netsnmp.Varbind('.1.3.6.1.4.1.674.11000.5000.100.4.1.1.3.1.11.1'), # chassis temp.
+        netsnmp.Varbind('.1.3.6.1.4.1.674.11000.5000.100.4.1.1.4.1.5.1.1')  # card temp.
+	)
+	#vals = snmpSession.walk(vars)
+	vals = snmpSession.get(vars)
 	if vals:
 		for temp in vals:
 			if int(temp) > int(crit) and retCode < 2:
