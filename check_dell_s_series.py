@@ -130,10 +130,10 @@ def getSystemInfo():
 		message.insert(0, 'Unable to get SNMP metrics from server !')
 
 	vars = netsnmp.VarList(
-		netsnmp.Varbind('.1.3.6.1.4.1.674.11000.5000.100.4.1.1.3.1.2'), # chassis type
-		netsnmp.Varbind('.1.3.6.1.4.1.674.11000.5000.100.4.1.1.3.1.6'), # chassis hw rev.
-		netsnmp.Varbind('.1.3.6.1.4.1.674.11000.5000.100.4.1.1.3.1.4'), # chassis p/n
-		netsnmp.Varbind('.1.3.6.1.4.1.674.11000.5000.100.4.1.1.3.1.7')) #chassis service tag
+		netsnmp.Varbind('.1.3.6.1.4.1.674.11000.5000.100.4.1.1.3.1.2.1'), # chassis type
+		netsnmp.Varbind('.1.3.6.1.4.1.674.11000.5000.100.4.1.1.3.1.6.1'), # chassis hw rev.
+		netsnmp.Varbind('.1.3.6.1.4.1.674.11000.5000.100.4.1.1.3.1.4.1'), # chassis p/n
+		netsnmp.Varbind('.1.3.6.1.4.1.674.11000.5000.100.4.1.1.3.1.7.1')) #chassis service tag
 	vals = snmpSession.get(vars)
 	if vals:
 		message.append('chassis: ' + Os10ChassisDefType.get(vals[0]) + ' (rev. ' + vals[1] + ') - p/n:' + vals[2] + ' - ServiceTag:' + vals[3])
@@ -142,11 +142,11 @@ def getSystemInfo():
 		message.insert(0, 'Unable to get SNMP metrics from server !')
 
 	vars = netsnmp.VarList(
-		netsnmp.Varbind('.1.3.6.1.4.1.674.11000.5000.100.4.1.1.4.1.3'), # card descr
-		netsnmp.Varbind('.1.3.6.1.4.1.674.11000.5000.100.4.1.1.4.1.8'), # card h/w rev.
-		netsnmp.Varbind('.1.3.6.1.4.1.674.11000.5000.100.4.1.1.4.1.6'), # card P/N
-		netsnmp.Varbind('.1.3.6.1.4.1.674.11000.5000.100.4.1.1.4.1.4'), # card status
-		netsnmp.Varbind('.1.3.6.1.4.1.674.11000.5000.100.4.1.1.4.1.9')) # card Service Tag
+		netsnmp.Varbind('.1.3.6.1.4.1.674.11000.5000.100.4.1.1.4.1.3.1.1'), # card descr
+		netsnmp.Varbind('.1.3.6.1.4.1.674.11000.5000.100.4.1.1.4.1.8.1.1'), # card h/w rev.
+		netsnmp.Varbind('.1.3.6.1.4.1.674.11000.5000.100.4.1.1.4.1.6.1.1'), # card P/N
+		netsnmp.Varbind('.1.3.6.1.4.1.674.11000.5000.100.4.1.1.4.1.4.1.1'), # card status
+		netsnmp.Varbind('.1.3.6.1.4.1.674.11000.5000.100.4.1.1.4.1.9.1.1')) # card Service Tag
 	vals = snmpSession.get(vars)
 	if vals:
 		cardStatus = int(vals[3])
